@@ -1,4 +1,4 @@
-# Local Tracker Interpolation
+# Local Tracker Simulator
 
 This Python script implements a system to locally track a device by triangulating its position. The testing script uses the `tkinter` library to visualize the tracking system over a moving object.
 
