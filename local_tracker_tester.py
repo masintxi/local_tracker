@@ -92,7 +92,7 @@ def handle_error(e):
     """Handle errors during position calculation."""
     print(f"Error: {e.args[0]}")
     text_label.config(bg="red")
-    error_label.config(text=e.args[0])
+    error_label.config(text=e.args[0], font=("Arial", 11))
     error_label.grid()
 
     x_label.config(text="x = ?")
@@ -217,8 +217,8 @@ text_label = tk.Label(bot_frame, text="   CALCULATED POSITION   ",
                       fg="yellow", font=("Arial", 18))
 text_label.grid(row=0, column=2, columnspan=3)
 
-error_label = tk.Label(bot_frame, text="      Move with the keyboard arrows to dynamically test the tracker",
-                       bg="black", fg="yellow")
+error_label = tk.Label(bot_frame, text="  Move with the keyboard arrows to\n dynamically test the tracker",
+                       bg="black", fg="yellow", font=("Arial", 18))
 error_label.grid(row=0, column=7, rowspan=3)
 
 # Checkbuttons for enabling/disabling receivers and its labels
@@ -244,6 +244,10 @@ for rec_id, rec in receivers.items():
 
     receiver_labels[rec_id].place(x=rec.x + 15, y=rec.y - 30)
     draw_circle(rec.x, rec.y, 8, fill="green", outline="green", tag="rec")
+
+kb_image = tk.PhotoImage(file="images/kb_arr.png")
+kb_image_lbl = tk.Label(root, image=kb_image)
+kb_image_lbl.place(x=CANVAS_WIDTH + 10, y=470)
 
 # Bind arrow keys for movement
 root.bind('<Left>', move_with_arrows)
