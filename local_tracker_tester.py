@@ -147,6 +147,15 @@ def draw_receiver_data(tx, ty, receivers_used):
             fg="black" if rec_id in receivers_used else "white"
         )
 
+        draw_circle(
+            receivers[rec_id].x, 
+            receivers[rec_id].y, 
+            8,
+            fill="orange" if rec_id in receivers_used else "green", 
+            outline="orange" if rec_id in receivers_used else "green", 
+            tag="rec"
+        )
+
 
 def update_receiver_status():
     """Update active receivers based on checkbutton states."""
@@ -156,8 +165,6 @@ def update_receiver_status():
         if var.get() == 1:
             active_receivers[rec_id] = receivers[rec_id]
             receiver_labels[rec_id].place(x=receivers[rec_id].x + 15, y=receivers[rec_id].y - 30)
-            draw_circle(receivers[rec_id].x, receivers[rec_id].y, 8,
-                        fill="green", outline="green", tag="rec")
         else:
             receiver_labels[rec_id].place_forget()
 
