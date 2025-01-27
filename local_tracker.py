@@ -55,12 +55,12 @@ class Tracker():
         # Usually the circles should intesect in two points and one of them
         # must be our target. Let's calculate this intersection points
         (x3_1, y3_1), (x3_2, y3_2) = self.__calculate_candidate_points(r0, x0, y0, r1, x1, y1, dist)
-        print(f"{self.id} is at: ({round(x3_1, 2)},{round(y3_1, 2)}) or ({round(x3_2, 2)},{round(y3_2, 2)})")
+        # print(f"{self.id} is at: ({round(x3_1, 2)},{round(y3_1, 2)}) or ({round(x3_2, 2)},{round(y3_2, 2)})")
 
         # If the two candidates are the same point it means the two circles are tangent 
         # and we can calculate the position with two receivers
         if self.__compare_eq_dist(x3_1, x3_2) and self.__compare_eq_dist(y3_1, y3_2):
-            print("Tangency!!!!!!!")
+            # print("Tangency!!!!!!!")
             self.__x , self.__y = x3_1, y3_1
             return (self.__x , self.__y, (id0, id1))
 
@@ -82,7 +82,7 @@ class Tracker():
         # receivers until we find one that gets two different readings
         if self.__compare_eq_dist(test_p1, test_p2):
             for i in range(3, len(loc)):
-                print(f"{id2} reported equal distance {round(test_p1, 2)}. Using other receiver: {loc[i][3]}")
+                # print(f"{id2} reported equal distance {round(test_p1, 2)}. Using other receiver: {loc[i][3]}")
                 r2, x2, y2, id2 = loc[i]
                 test_p1 = self.__measure_distance(x3_1, y3_1, x2, y2)
                 test_p2 = self.__measure_distance(x3_2, y3_2, x2, y2)
@@ -113,7 +113,7 @@ class Tracker():
         l1 = (r0 ** 2 - r1 ** 2 + dist ** 2) / (2 * dist)
 
         # l2 = sqrt(r0^2 - l1^2)
-        l2 = sqrt(r0 ** 2 - l1 ** 2)
+        l2 = sqrt(abs(r0 ** 2 - l1 ** 2))
 
         # p2 = p0 + l1 * (p1 - p0) / dist
         x2 = x0 + l1 * (x1 - x0) / dist
